@@ -33,7 +33,7 @@ public class Ticket {
 
     public String toFileString() {
         return id + "," + bookingId + "," + seatNo + "," + price + "," + status;
-
-
     }
 }
+
+
