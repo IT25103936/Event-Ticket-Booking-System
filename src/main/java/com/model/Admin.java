@@ -1,87 +1,59 @@
 package com.model;
 
-public class Admin {
+public class Admin extends User {
 
-    private int id;
-    private String name;
-    private String email;
-    private String phone;
-    private String password;
-    private String role;
-    private String image;
+    private String adminLevel;
+    private boolean active;
+
+    public Admin() {
+        super();
+        this.setRole("ADMIN");
+        this.adminLevel = "ADMIN"; // default level
+        this.active = true;
+    }
 
     public Admin(int id, String name, String email, String phone,
-                 String password,String role,String image) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.password = password;
-        this.image = image;
-        this.role = role;
+                 String role, String password, String image,
+                 String adminLevel) {
+
+        super(id, name, email, phone, "ADMIN", password, image);
+
+        this.adminLevel = adminLevel;
+        this.active = true;
     }
 
-    public int getId() {
-        return id;
+
+    public String getAdminLevel() {
+        return adminLevel;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAdminLevel(String adminLevel) {
+        this.adminLevel = adminLevel;
     }
 
-    public String getName() {
-        return name;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    // FILE FORMAT:
+    // id,name,email,phone,role,password,image,adminLevel,active
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    // id,name,email,phone,password,image,role
     public String toFileString() {
-        return id + "," + name + "," + email + "," + phone + "," +
-                password + "," + image + "," + role;
-
-
+        return getId() + "," +
+                getName() + "," +
+                getEmail() + "," +
+                getPhone() + "," +
+                getRole() + "," +
+                getPassword() + "," +
+                getImage() + "," +
+                adminLevel + "," +
+                active;
     }
+
+
+
 }
