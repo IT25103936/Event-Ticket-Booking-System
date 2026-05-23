@@ -9,6 +9,11 @@ public class User {
     private String role;
     private String image;
 
+
+
+    public User() {}
+
+
     public User(int id, String name, String email, String phone, String role, String password, String image) {
         this.id = id;
         this.name = name;
@@ -18,6 +23,7 @@ public class User {
         this.password = password;
         this.image = image;
     }
+  
     public String getRole() {
         return role;
     }

@@ -1,0 +1,146 @@
+        :root {
+            --sidebar-w: 260px;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --accent: #4f46e5;
+            --text-main: #0f172a;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background-attachment: fixed;
+            color: var(--text-main);
+        }
+
+        .page-wrapper { display: flex; min-height: 100vh; }
+        .main-content { margin-left: var(--sidebar-w); padding: 40px; width: 100%; }
+
+        /* GLASS COMPONENTS */
+        .glass-header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 20px 30px;
+            border-radius: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .crystal-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 28px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+        }
+
+        /* TABLE & AVATAR */
+        .crystal-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+        .crystal-table td {
+            background: rgba(255, 255, 255, 0.45);
+            padding: 12px 20px;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            vertical-align: middle;
+        }
+        .crystal-table td:first-child { border-left: 1px solid var(--glass-border); border-radius: 16px 0 0 16px; }
+        .crystal-table td:last-child { border-right: 1px solid var(--glass-border); border-radius: 0 16px 16px 0; }
+
+        .admin-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 15px;
+            object-fit: cover;
+            border: 2px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+
+        /* COMPACT MODAL STYLES */
+        .modal-sm-custom { max-width: 380px; }
+        .glass-modal {
+            border-radius: 28px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(25px);
+            overflow: hidden;
+        }
+
+        .modal-header-admin {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        .preview-container-sm {
+            position: absolute;
+            bottom: -25px;
+            right: 20px;
+            width: 65px;
+            height: 65px;
+            background: white;
+            border-radius: 15px;
+            padding: 3px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            z-index: 5;
+        }
+
+        .preview-container-sm img {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .compact-label {
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: #64748b;
+            margin-bottom: 4px;
+            display: block;
+            margin-left: 4px;
+            text-transform: uppercase;
+        }
+
+        .input-group-crystal-sm {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            transition: 0.2s;
+            margin-bottom: 12px;
+        }
+
+        .input-group-crystal-sm:focus-within {
+            border-color: var(--accent);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .input-group-crystal-sm .form-control,
+        .input-group-crystal-sm .form-select {
+            border: none;
+            background: transparent;
+            font-size: 0.85rem;
+            padding: 8px 12px;
+        }
+
+        .btn-save {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .btn-save:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .shadow-indigo { box-shadow: 0 8px 20px -5px rgba(79, 70, 229, 0.4); }
