@@ -16,9 +16,8 @@
     <!-- QR Logic -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-    <!-- Load CSS file -->
-    <link rel="stylesheet" href="/eventTicketBookingSystem/css/userview/coupons.css">
-
+   <!-- Load CSS file -->
+   <link rel="stylesheet" href="/eventTicketBookingSystem/css/userview/coupons.css">
 
 </head>
 <body>
@@ -88,10 +87,10 @@
             }
             if (count == 0) {
         %>
-        <div class="col-12 text-center py-5">
-            <i class="bi bi-gift opacity-25" style="font-size: 4rem;"></i>
-            <p class="mt-3 opacity-50">No active rewards available right now.</p>
-        </div>
+            <div class="col-12 text-center py-5">
+                <i class="bi bi-gift opacity-25" style="font-size: 4rem;"></i>
+                <p class="mt-3 opacity-50">No active rewards available right now.</p>
+            </div>
         <% } %>
     </div>
 </div>

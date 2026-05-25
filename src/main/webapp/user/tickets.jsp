@@ -3,6 +3,32 @@
 <%@ page import="com.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%!
+// --- HELPER METHOD: Finds the Event Name from events.txt using Event ID ---
+public String getEventNameById(String eventId, ServletContext application) {
+    String path = application.getRealPath("/") + "data/events.txt";
+    File file = new File(path);
+
+    if (!file.exists()) return "Unknown Event (" + eventId + ")";
+
+    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            if (line.trim().isEmpty()) continue;
+            String[] tokens = line.split(",");
+
+            // Assuming index 0 is Event ID, and index 1 is the Event Name
+            if (tokens.length >= 2 && tokens[0].trim().equals(eventId.trim())) {
+                return tokens[1].trim();
+            }
+        }
+    } catch (Exception e) {
+        return "Error loading name (" + eventId + ")";
+    }
+    return "Event Not Found";
+}
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +48,7 @@
 
 <%
 User user = (User) session.getAttribute("user");
-String userId = (user != null) ? String.valueOf(user.getId()) : "";
+String currentUserId = (user != null) ? String.valueOf(user.getId()).trim() : "";
 
 String path = application.getRealPath("/") + "data/tickets.txt";
 File file = new File(path);
@@ -33,7 +59,7 @@ boolean hasTickets = false;
 <div class="page-header text-center mt-5">
     <div class="container">
         <h1 class="fw-800 display-5" style="font-weight: 800;">My Tickets</h1>
-        <p class="text-muted">You have 3 upcoming events. Ready to explore?</p>
+        <p class="text-muted">Review your upcoming event entry passes.</p>
     </div>
 </div>
 
@@ -42,41 +68,59 @@ boolean hasTickets = false;
         <div class="col-lg-10">
 
 <%
-if (file.exists()) {
+if (file.exists() && !currentUserId.isEmpty()) {
 
-    BufferedReader br = new BufferedReader(new FileReader(file));
-    String line;
+    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        String line;
 
-    while ((line = br.readLine()) != null) {
+        while ((line = br.readLine()) != null) {
+            if (line.trim().isEmpty()) continue;
 
-        if (line.trim().isEmpty()) continue;
+            String[] d = line.split(",");
+            if (d.length < 6) continue;
 
-        String[] d = line.split(",");
+            String ticketId = d[0].trim();
+            String eventId  = d[3].trim();
+            String userIdDB = d[2].trim();
 
-        if (d.length < 5) continue;
 
-        String ticketId = d[0];
-        String eventId  = d[1];
-        String seat     = d[2];
-        String price    = d[3];
-        String status   = d[4];
+            if (!currentUserId.equals(userIdDB)) continue;
 
-        hasTickets = true;
+            // CROSS-REFERENCE CALL: Grab the real title name from events.txt
+            String eventName = getEventNameById(eventId, application);
+
+            String seatsRaw = d[3];
+            if (d.length > 6) {
+                StringBuilder sb = new StringBuilder(d[3]);
+                for (int i = 4; i < d.length - 2; i++) {
+                    sb.append(",").append(d[i]);
+                }
+                seatsRaw = sb.toString();
+            }
+
+            String price  = d[d.length - 2].trim();
+            String status = d[d.length - 1].trim();
+
+            hasTickets = true;
+
+            String seats = seatsRaw
+                    .replace("[", "")
+                    .replace("]", "")
+                    .replace(",", " | ")
+                    .replace("\"", "");
 %>
 
-
-            <!-- TICKET -->
-            <div class="ticket-wrapper">
+            <div class="ticket-wrapper mb-4">
                 <div class="ticket-card">
 
                     <div class="ticket-info">
                         <span class="t-category">Event Ticket</span>
-                        <h2 class="t-name">Event ID: <%= eventId %></h2>
+                        <h2 class="t-name"><%= eventName %></h2>
 
                         <div class="t-meta">
                             <div class="meta-box">
                                 <span>Seat</span>
-                                <p><%= seat %></p>
+                                <p><%= seats %></p>
                             </div>
 
                             <div class="meta-box">
@@ -93,7 +137,7 @@ if (file.exists()) {
                         <div class="mt-3">
                             <span class="small text-muted">
                                 <i class="bi bi-ticket-perforated text-primary"></i>
-                                Ticket Booking System
+                                Event ID: <%= eventId %>
                             </span>
                         </div>
                     </div>
@@ -114,22 +158,21 @@ if (file.exists()) {
             </div>
 
 <%
+        }
+    } catch (Exception e) {
+        out.println("<div class='alert alert-danger'>Error processing tickets file: " + e.getMessage() + "</div>");
     }
-
-    br.close();
 }
 %>
 
 <%
 if (!hasTickets) {
 %>
-
     <div class="text-center py-5">
         <i class="bi bi-ticket-detailed text-muted" style="font-size: 4rem; opacity: 0.3;"></i>
         <h4 class="mt-3 text-muted">No tickets found</h4>
         <a href="events.jsp" class="btn btn-primary mt-2">Browse Events</a>
     </div>
-
 <%
 }
 %>

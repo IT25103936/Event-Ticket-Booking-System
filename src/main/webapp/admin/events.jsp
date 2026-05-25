@@ -16,6 +16,7 @@
 
 <body>
 <div class="page-wrapper">
+    <%@ include file="navbar.jsp" %>
 
     <main class="main-content">
 
@@ -32,14 +33,14 @@
         <div class="crystal-card">
             <table class="crystal-table">
                 <thead>
-                <tr>
-                    <th>Asset</th>
-                    <th>Identifier</th>
-                    <th>Event Name</th>
-                    <th>Location</th>
-                    <th>Price</th>
-                    <th class="text-end">Options</th>
-                </tr>
+                    <tr>
+                        <th>Asset</th>
+                        <th>Identifier</th>
+                        <th>Event Name</th>
+                        <th>Location</th>
+                        <th>Price</th>
+                        <th class="text-end">Options</th>
+                    </tr>
                 </thead>
                 <tbody>
                 <%
@@ -110,15 +111,15 @@
                                  the onclick never fired and the icon was swallowed -->
                             <button class="btn btn-outline-secondary btn-sm rounded-3"
                                     onclick="openEdit(
-                                            '<%= eId %>',
-                                            '<%= eNameJs %>',
-                                            '<%= eDate %>',
-                                            '<%= eTime %>',
-                                            '<%= eLocationJs %>',
-                                            '<%= ePrice %>',
-                                            '<%= eImg %>',
-                                            '<%= eDescJs %>'
-                                            )">
+                                        '<%= eId %>',
+                                        '<%= eNameJs %>',
+                                        '<%= eDate %>',
+                                        '<%= eTime %>',
+                                        '<%= eLocationJs %>',
+                                        '<%= ePrice %>',
+                                        '<%= eImg %>',
+                                        '<%= eDescJs %>'
+                                    )">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
 
@@ -151,123 +152,123 @@
 
 <!-- ===================== MODAL ===================== -->
 <div class="modal fade" id="eventModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content glass-modal">
-            <div class="modal-split-container">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content glass-modal">
+<div class="modal-split-container">
 
-                <!-- LEFT: image preview -->
-                <div class="modal-visual-pane">
-                    <div class="form-section-title">Visual Asset</div>
-                    <div class="preview-circle">
-                        <i class="bi bi-cloud-arrow-up fs-1 text-muted" id="placeholderIcon"></i>
-                        <img id="modalPreviewImg"
-                             src=""
-                             alt="Preview"
-                             style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;">
-                    </div>
-                    <label for="imageInput" class="custom-file-btn">
-                        <i class="bi bi-image me-1"></i> Change Photo
-                    </label>
-                </div>
+    <!-- LEFT: image preview -->
+    <div class="modal-visual-pane">
+        <div class="form-section-title">Visual Asset</div>
+        <div class="preview-circle">
+            <i class="bi bi-cloud-arrow-up fs-1 text-muted" id="placeholderIcon"></i>
+            <img id="modalPreviewImg"
+                 src=""
+                 alt="Preview"
+                 style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;">
+        </div>
+        <label for="imageInput" class="custom-file-btn">
+            <i class="bi bi-image me-1"></i> Change Photo
+        </label>
+    </div>
 
-                <!-- RIGHT: form -->
-                <div class="modal-form-pane">
-                    <form action="<%= request.getContextPath() %>/EventServlet"
-                          method="post"
-                          enctype="multipart/form-data">
+    <!-- RIGHT: form -->
+    <div class="modal-form-pane">
+        <form action="<%= request.getContextPath() %>/EventServlet"
+              method="post"
+              enctype="multipart/form-data">
 
-                        <input type="hidden" name="action"        id="action"        value="create">
-                        <input type="hidden" name="id"            id="id">
-                        <input type="hidden" name="existingImage" id="existingImage">
+            <input type="hidden" name="action"        id="action"        value="create">
+            <input type="hidden" name="id"            id="id">
+            <input type="hidden" name="existingImage" id="existingImage">
 
-                        <!-- Hidden file input triggered by the label on the left -->
-                        <input type="file"
-                               name="image"
-                               id="imageInput"
-                               accept="image/*"
-                               style="display:none"
-                               onchange="previewFile()">
+            <!-- Hidden file input triggered by the label on the left -->
+            <input type="file"
+                   name="image"
+                   id="imageInput"
+                   accept="image/*"
+                   style="display:none"
+                   onchange="previewFile()">
 
-                        <h5 class="fw-800 mb-4" id="formTitle">Event Registration</h5>
+            <h5 class="fw-800 mb-4" id="formTitle">Event Registration</h5>
 
-                        <div class="form-section-title">Primary Info</div>
+            <div class="form-section-title">Primary Info</div>
 
-                        <div class="input-group-modern">
-                            <input type="text"
-                                   name="name"
-                                   id="name"
-                                   class="form-control"
-                                   placeholder="Event Name"
-                                   required>
-                        </div>
+            <div class="input-group-modern">
+                <input type="text"
+                       name="name"
+                       id="name"
+                       class="form-control"
+                       placeholder="Event Name"
+                       required>
+            </div>
 
-                        <div class="input-group-modern">
+            <div class="input-group-modern">
                 <textarea name="description"
                           id="description"
                           class="form-control"
                           rows="2"
                           placeholder="Brief description..."></textarea>
-                        </div>
-
-                        <div class="form-section-title mt-4">Logistics &amp; Value</div>
-
-                        <div class="row g-2">
-                            <div class="col-6">
-                                <div class="input-group-modern">
-                                    <input type="date"
-                                           name="date"
-                                           id="date"
-                                           class="form-control"
-                                           required>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="input-group-modern">
-                                    <input type="number"
-                                           name="price"
-                                           id="price"
-                                           class="form-control"
-                                           placeholder="Rate ($)"
-                                           min="0"
-                                           step="0.01"
-                                           required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="input-group-modern">
-                            <input type="time"
-                                   name="time"
-                                   id="time"
-                                   class="form-control"
-                                   required>
-                        </div>
-
-                        <div class="input-group-modern">
-                            <input type="text"
-                                   name="location"
-                                   id="location"
-                                   class="form-control"
-                                   placeholder="Venue Location"
-                                   required>
-                        </div>
-
-                        <div class="mt-4 d-flex gap-2">
-                            <button type="submit" class="btn-add flex-grow-1">Commit Entry</button>
-                            <button type="button"
-                                    class="btn btn-light px-4"
-                                    data-bs-dismiss="modal"
-                                    style="border-radius:14px">
-                                Discard
-                            </button>
-                        </div>
-
-                    </form>
-                </div>
-
             </div>
-        </div>
+
+            <div class="form-section-title mt-4">Logistics &amp; Value</div>
+
+            <div class="row g-2">
+                <div class="col-6">
+                    <div class="input-group-modern">
+                        <input type="date"
+                               name="date"
+                               id="date"
+                               class="form-control"
+                               required>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group-modern">
+                        <input type="number"
+                               name="price"
+                               id="price"
+                               class="form-control"
+                               placeholder="Rate ($)"
+                               min="0"
+                               step="0.01"
+                               required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group-modern">
+                <input type="time"
+                       name="time"
+                       id="time"
+                       class="form-control"
+                       required>
+            </div>
+
+            <div class="input-group-modern">
+                <input type="text"
+                       name="location"
+                       id="location"
+                       class="form-control"
+                       placeholder="Venue Location"
+                       required>
+            </div>
+
+            <div class="mt-4 d-flex gap-2">
+                <button type="submit" class="btn-add flex-grow-1">Commit Entry</button>
+                <button type="button"
+                        class="btn btn-light px-4"
+                        data-bs-dismiss="modal"
+                        style="border-radius:14px">
+                    Discard
+                </button>
+            </div>
+
+        </form>
     </div>
+
+</div>
+</div>
+</div>
 </div>
 <!-- ================================================= -->
 
@@ -336,6 +337,3 @@
 </script>
 </body>
 </html>
-
-
-
