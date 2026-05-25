@@ -1,0 +1,111 @@
+
+        :root {
+            --p-accent: #6366f1;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.4);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+
+            /* FIX: removed 'fixed' */
+            background: url("/eventTicketBookingSystem/img/dashboard8.jpg") no-repeat center center;
+            background-size: cover;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.85) 100%);
+            z-index: -1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding-top: 120px;
+            padding-bottom: 60px;
+        }
+
+        .history-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            border: 1px solid var(--glass-border);
+            border-radius: 35px;
+            padding: 40px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05);
+
+            /* PERFORMANCE */
+            will-change: transform;
+            transform: translateZ(0);
+            contain: layout paint;
+        }
+
+        .page-title {
+            font-weight: 800;
+            font-size: 28px;
+            color: #1e293b;
+        }
+
+        .table-glass {
+            border-collapse: separate;
+            border-spacing: 0 12px;
+        }
+
+        .table-glass thead th {
+            border: none;
+            color: #64748b;
+            font-weight: 700;
+            font-size: 11px;
+            padding: 15px 20px;
+        }
+
+        .table-glass tbody tr {
+            background: rgba(255, 255, 255, 0.4);
+            transition: transform 0.25s ease, background 0.25s ease;
+            will-change: transform;
+        }
+
+        .table-glass tbody tr td {
+            padding: 20px;
+            border: none;
+        }
+
+        .table-glass tbody tr td:first-child {
+            border-radius: 15px 0 0 15px;
+        }
+
+        .table-glass tbody tr td:last-child {
+            border-radius: 0 15px 15px 0;
+        }
+
+        .table-glass tbody tr:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: translate3d(0, 0, 0) scale(1.01);
+        }
+
+        .badge-status {
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        .id-pill {
+            background: var(--p-accent);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        /* global performance */
+        * {
+            backface-visibility: hidden;
+        }

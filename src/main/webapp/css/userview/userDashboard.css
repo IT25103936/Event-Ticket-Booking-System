@@ -1,0 +1,148 @@
+
+        :root {
+            --p-accent: #6366f1;
+            --glass: rgba(255, 255, 255, 0.35);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --text-title: #0f172a;
+            --text-body: #1e293b;
+        }
+
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background:   url("/eventTicketBookingSystem/img/dashboard5.jpg") no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+
+            /* smoother rendering */
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+                overflow: hidden;
+        }
+
+      /* LOW FADE OVERLAY */
+/* DARK OVERLAY */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: linear-gradient(
+        rgba(15,23,42,0.95),
+        rgba(15,23,42,0.15)
+    );
+
+    pointer-events: none;
+    z-index: 0;   /* IMPORTANT */
+      overflow: hidden;
+}
+
+/* bring all content above overlay */
+body > * {
+    position: relative;
+    z-index: 1;
+      overflow: hidden;
+}
+
+        .main-content {
+            padding-top: 120px;
+            padding-bottom: 60px;
+        }
+
+        .dashboard-header h2 {
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: #ffffff;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        /* OPTIMIZED GLASS CARD */
+        .bento-card {
+            background: var(--glass);
+
+            /* reduced blur (huge performance boost) */
+            backdrop-filter: blur(14px) saturate(160%);
+            -webkit-backdrop-filter: blur(14px) saturate(160%);
+
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+
+            /* GPU acceleration */
+            transform: translateZ(0);
+            will-change: transform;
+
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+
+            text-decoration: none !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-6px) translateZ(0);
+
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.8);
+
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .card-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.5);
+
+            /* lighter blur */
+            backdrop-filter: blur(6px);
+
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--p-accent);
+
+            transform: translateZ(0);
+        }
+
+        .bento-card h4 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-title);
+            margin: 0;
+        }
+
+        .bento-card p {
+            font-size: 0.9rem;
+            color: var(--text-body);
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .bento-link {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--p-accent);
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Reduce repaint scope */
+        .row {
+            contain: layout style;
+        }

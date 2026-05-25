@@ -1,0 +1,155 @@
+
+        :root {
+            --bg: #030712;
+            --glass: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent: #818cf8;
+            --success: #34d399;
+        }
+
+        body {
+            background: linear-gradient(rgba(3, 7, 18, 0.7), rgba(3, 7, 18, 0.96)),
+                        url('/eventTicketBookingSystem/img/dashboard8.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* --- Layout --- */
+        .page-header { padding: 40px 0 30px; }
+
+        .reward-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding-bottom: 80px;
+        }
+
+        /* --- Compact Glass Card --- */
+        .reward-card {
+            background: var(--glass);
+            backdrop-filter: blur(25px) saturate(160%);
+            -webkit-backdrop-filter: blur(25px) saturate(160%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reward-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(129, 140, 248, 0.5);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        /* --- Elements --- */
+        .discount-val {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 12px 0;
+            background: linear-gradient(to bottom, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
+        .card-desc { font-size: 0.85rem; color: #94a3b8; margin-bottom: 24px; line-height: 1.4; }
+
+        /* --- Actions --- */
+        .action-bar {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .btn-copy-alt {
+            flex-grow: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            padding: 12px;
+            border-radius: 14px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.2s;
+        }
+
+        .btn-copy-alt:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn-qr-alt {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border: none;
+            border-radius: 14px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: 0.3s;
+        }
+
+        .btn-qr-alt:hover {
+            transform: rotate(10deg) scale(1.1);
+            filter: brightness(1.1);
+        }
+
+        /* --- QR Overlay --- */
+        .qr-overlay {
+            position: absolute;
+            inset: 0;
+            background: #ffffff;
+            z-index: 20;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .qr-frame img {
+            width: 150px !important;
+            height: 150px !important;
+            border: 4px solid #fff;
+        }
+
+        .close-qr {
+            position: absolute;
+            top: 15px; right: 15px;
+            color: #000;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10%); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Notification --- */
+        #copyToast {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 100px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1000;
+        }

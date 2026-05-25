@@ -1,0 +1,380 @@
+:root {
+    --primary: #6366f1;
+    --secondary: #a855f7;
+    --glass: rgba(235, 235, 235, 0.75);
+    --card-border: rgba(255, 255, 255, 0.4);
+    --text-dark: #0f172a;
+}
+
+/* ================= BODY ================= */
+
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #0f172a;
+    background-image: url("/eventTicketBookingSystem/img/dashboard.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* BACKGROUND OVERLAY */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(15, 23, 42, 0.5) 0%,
+        rgba(15, 23, 42, 0.9) 100%
+    );
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ================= GLOBAL ================= */
+
+
+.main-content {
+    padding-top: 130px;
+    padding-bottom: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ================= HEADER ================= */
+
+.header-wrap {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.header-wrap h2 {
+    color: white;
+    font-weight: 800;
+    font-size: 3rem;
+    letter-spacing: -0.05em;
+    margin-bottom: 15px;
+}
+
+/* ================= EVENT CARD ================= */
+
+.event-card {
+    background: rgba(255, 255, 255, 0.6);
+
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+    border: 1px solid var(--card-border);
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+
+    background: rgba(255, 255, 255, 0.9);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.35);
+
+    border-color: var(--primary);
+}
+
+/* ================= IMAGE ================= */
+
+.img-stack {
+    position: relative;
+    height: 220px;
+    margin: 12px;
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+.row-img,
+.event-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+}
+
+.event-card:hover .row-img,
+.event-card:hover .event-img {
+    transform: scale(1.08);
+}
+
+/* ================= CATEGORY ================= */
+
+.category-pill {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    background: rgba(15, 23, 42, 0.65);
+
+    backdrop-filter: blur(10px);
+
+    color: white;
+
+    padding: 6px 14px;
+
+    border-radius: 999px;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* ================= PRICE ================= */
+
+.price-tag {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+
+    background: white;
+    color: var(--text-dark);
+
+    padding: 6px 12px;
+
+    border-radius: 12px;
+
+    font-weight: 800;
+    font-size: 0.9rem;
+
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* ================= CALENDAR ================= */
+
+.calendar-box {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+
+    background: white;
+
+    width: 50px;
+    height: 55px;
+
+    border-radius: 14px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.calendar-box .mm {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.calendar-box .dd {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #111827;
+}
+
+/* ================= CONTENT ================= */
+
+.card-content {
+    padding: 10px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.location-info {
+    font-size: 0.85rem;
+    color: #64748b;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 15px;
+}
+
+/* ================= BUTTON ================= */
+
+.btn-modern {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color: white;
+
+    border: none;
+
+    padding: 14px;
+
+    border-radius: 18px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    overflow: hidden;
+    position: relative;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.btn-modern::after {
+    content: "";
+
+    position: absolute;
+
+    top: -50%;
+    left: -100%;
+
+    width: 200%;
+    height: 200%;
+
+    background: linear-gradient(
+        transparent,
+        rgba(255,255,255,0.25),
+        transparent
+    );
+
+    transform: rotate(45deg);
+
+    transition: transform 0.6s;
+}
+
+.btn-modern:hover::after {
+    transform: translateX(160%) rotate(45deg);
+}
+
+.btn-modern:hover {
+    transform: scale(1.02);
+
+    box-shadow:
+        0 15px 30px rgba(99,102,241,0.4);
+
+    color: white;
+}
+
+/* ================= RATINGS ================= */
+
+.rating-stars {
+    color: #ffc107;
+    font-size: 0.95rem;
+}
+
+.review-link {
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: #334155;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.review-link:hover {
+    color: var(--primary);
+}
+
+/* ================= MODAL ================= */
+
+#reviewModal .modal-content {
+    background: var(--glass);
+
+    backdrop-filter: blur(20px);
+
+    border-radius: 24px;
+
+    border: none;
+
+    max-height: 90vh;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 40px 100px rgba(0,0,0,0.4);
+}
+
+/* ================= REVIEW LIST ================= */
+
+#rmReviewsList {
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+    .main-content {
+        padding-top: 110px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .header-wrap h2 {
+        font-size: 2rem;
+    }
+
+    .img-stack {
+        height: 200px;
+    }
+
+    .card-content {
+        padding: 16px;
+    }
+
+    .calendar-box {
+        width: 46px;
+        height: 52px;
+    }
+
+    .btn-modern {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    #reviewModal .modal-content {
+        max-height: 95vh;
+    }
+
+    #rmReviewsList {
+        max-height: 250px;
+    }
+}
