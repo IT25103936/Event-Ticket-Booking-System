@@ -61,7 +61,7 @@ public class UserAuthServlet extends HttpServlet {
                 if (d.length >= 7) {
 
                     if (d[2].trim().equalsIgnoreCase(email)
-                            && d[4].trim().equals(password)) {
+                            && d[5].trim().equals(password)) {
 
                         return new User(
                                 Integer.parseInt(d[0].trim()),
