@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-    <!-- Load CSS file -->
-    <link rel="stylesheet" href="/eventTicketBookingSystem/css/adminview/coupons.css">
+ <!-- Load CSS file -->
+       <link rel="stylesheet" href="/eventTicketBookingSystem/css/adminview/coupons.css">
 
 
 </head>
@@ -29,13 +29,13 @@
         <div class="crystal-card">
             <table class="crystal-table">
                 <thead>
-                <tr class="text-muted small fw-bold">
-                    <th>CODE</th>
-                    <th>QR KEY</th>
-                    <th>DISCOUNT</th>
-                    <th>STATUS</th>
-                    <th class="text-end">ACTIONS</th>
-                </tr>
+                    <tr class="text-muted small fw-bold">
+                        <th>CODE</th>
+                        <th>QR KEY</th>
+                        <th>DISCOUNT</th>
+                        <th>STATUS</th>
+                        <th class="text-end">ACTIONS</th>
+                    </tr>
                 </thead>
                 <tbody>
                 <%
@@ -48,42 +48,42 @@
                             String[] c = line.split(",");
                             if(c.length < 4) continue;
                 %>
-                <tr>
-                    <td class="fw-800 text-primary"><%= c[1] %></td>
-                    <td>
-                        <div class="qr-box" id="qr-<%= c[0] %>"></div>
-                        <script>
-                            new QRCode(document.getElementById("qr-<%= c[0] %>"), {
-                                text: "<%= c[1] %>", width: 45, height: 45
-                            });
-                        </script>
-                    </td>
-                    <td class="fw-bold"><%= c[2] %>% OFF</td>
-                    <td>
+                    <tr>
+                        <td class="fw-800 text-primary"><%= c[1] %></td>
+                        <td>
+                            <div class="qr-box" id="qr-<%= c[0] %>"></div>
+                            <script>
+                                new QRCode(document.getElementById("qr-<%= c[0] %>"), {
+                                    text: "<%= c[1] %>", width: 45, height: 45
+                                });
+                            </script>
+                        </td>
+                        <td class="fw-bold"><%= c[2] %>% OFF</td>
+                        <td>
                             <span class="status-pill <%= "true".equals(c[3].trim()) ? "active-bg" : "inactive-bg" %>">
                                 <%= "true".equals(c[3].trim()) ? "ACTIVE" : "INACTIVE" %>
                             </span>
-                    </td>
-                    <td class="text-end">
-                        <div class="d-flex gap-2 justify-content-end">
-                            <!-- UPDATE BUTTON -->
-                            <button class="btn btn-sm btn-light border shadow-sm"
-                                    onclick="openEdit('<%=c[0]%>','<%=c[1]%>','<%=c[2]%>','<%=c[3].trim()%>')">
-                                <i class="bi bi-pencil-fill text-primary"></i>
-                            </button>
-
-                            <!-- DELETE FORM -->
-                            <form action="<%=request.getContextPath()%>/CouponServlet" method="post"
-                                  style="display:inline;" onsubmit="return confirm('Delete this coupon?');">
-                                <input type="hidden" name="action" value="delete">
-                                <input type="hidden" name="id" value="<%=c[0]%>">
-                                <button type="submit" class="btn btn-sm btn-light border shadow-sm">
-                                    <i class="bi bi-trash3-fill text-danger"></i>
+                        </td>
+                        <td class="text-end">
+                            <div class="d-flex gap-2 justify-content-end">
+                                <!-- UPDATE BUTTON -->
+                                <button class="btn btn-sm btn-light border shadow-sm"
+                                        onclick="openEdit('<%=c[0]%>','<%=c[1]%>','<%=c[2]%>','<%=c[3].trim()%>')">
+                                    <i class="bi bi-pencil-fill text-primary"></i>
                                 </button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
+
+                                <!-- DELETE FORM -->
+                                <form action="<%=request.getContextPath()%>/CouponServlet" method="post"
+                                      style="display:inline;" onsubmit="return confirm('Delete this coupon?');">
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="id" value="<%=c[0]%>">
+                                    <button type="submit" class="btn btn-sm btn-light border shadow-sm">
+                                        <i class="bi bi-trash3-fill text-danger"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
                 <%
                         }
                         br.close();
@@ -132,7 +132,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-
     let modal = new bootstrap.Modal(document.getElementById('couponModal'));
     function openAdd() {
         document.getElementById('mAction').value = 'create';

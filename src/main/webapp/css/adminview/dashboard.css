@@ -1,0 +1,161 @@
+
+        :root {
+            --sidebar-w: 260px;
+            /* Light Theme Palette */
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent: #4f46e5;
+            --accent-soft: rgba(79, 70, 229, 0.1);
+            --panel-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Ambient background decoration */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -10%; right: -10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        /* --- FROSTED SIDEBAR --- */
+        .sidebar {
+            width: var(--sidebar-w);
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-right: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            padding: 35px 20px;
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+        }
+
+        .sidebar-brand {
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: -1.5px;
+            margin-bottom: 45px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--accent);
+        }
+
+        .nav-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 800;
+            color: var(--text-muted);
+            margin: 25px 0 12px 12px;
+        }
+
+        .nav-link-custom {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 18px;
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            transition: all 0.25s ease;
+        }
+
+        .nav-link-custom:hover {
+            background: white;
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .nav-link-custom.active {
+            background: var(--accent);
+            color: white !important;
+            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.4);
+        }
+
+        /* --- MAIN DASHBOARD AREA --- */
+        .main-container {
+            margin-left: var(--sidebar-w);
+            flex-grow: 1;
+            padding: 45px;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 28px;
+            box-shadow: var(--panel-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* STATS */
+        .stat-header { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+        .stat-number { font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 800; color: var(--text-main); }
+
+        .icon-box {
+            width: 44px; height: 44px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* TABLE DESIGN */
+        .crystal-table {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .crystal-table th {
+            padding: 12px 15px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .crystal-table td {
+            padding: 16px 15px;
+            background: rgba(255,255,255,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+            font-size: 0.88rem;
+        }
+
+        .crystal-table tr:first-child td:first-child { border-top-left-radius: 15px; }
+        .crystal-table tr:last-child td:last-child { border-bottom-right-radius: 15px; }
+
+        .badge-status {
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* CHART OVERRIDE */
+        .chart-wrap { height: 280px; width: 100%; }
