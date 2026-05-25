@@ -1,0 +1,2 @@
+1,samitha nirmala,samithani17@gmail.com,0767176314,ADMIN,ADMIN,3135715.png,SUPERADMIN,true
+2,deshan gamage,deshangamage@gmail.com,0784534234,ADMIN,1111,MDH_8729webqualitysquare.webp,SUPERADMIN,true
