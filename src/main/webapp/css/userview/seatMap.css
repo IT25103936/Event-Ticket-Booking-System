@@ -1,0 +1,237 @@
+
+        /* ── Base Styling & Structural Corrections ── */
+      body {
+                  font-family: 'Plus Jakarta Sans', sans-serif;
+                  background: url('/eventTicketBookingSystem/img/dashboard8.jpg') no-repeat center center fixed;
+                  background-size: cover;
+                  min-height: 100vh;
+                  color: var(--text-main);
+              }
+
+             /* White Overlay */
+             body::before {
+                 content: "";
+                 position: fixed;
+                 inset: 0;
+                 background: linear-gradient(
+                     180deg,
+                     rgba(255, 255, 255, 0.85) 0%,
+                     rgba(255, 255, 255, 0.4) 100%
+                 );
+                 z-index: -1;
+             }
+
+
+        .main-content {
+            padding-bottom: 5rem;
+            padding-top: 5rem;
+        }
+
+        .instr-hero {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .instr-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.03em;
+        }
+        .instr-hero p {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Modernized Step/Phase Cards Layout */
+        .instruction-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 2rem 1.75rem;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .instruction-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            border-color: #cbd5e1;
+        }
+        .instruction-card.active-phase {
+            border: 2px solid #6366f1;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        }
+        .card-number {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            line-height: 1;
+            z-index: 1;
+            user-select: none;
+        }
+        .instruction-card.active-phase .card-number {
+            color: #e2e8f0;
+        }
+        .step-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 2;
+        }
+        .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            z-index: 2;
+            box-shadow: inset 0 -2px 4px rgba(0,0,0,0.05);
+        }
+        .icon-purple { background: #f5f3ff; color: #6366f1; }
+        .icon-teal   { background: #ecfdf5; color: #059669; }
+        .icon-blue   { background: #eff6ff; color: #2563eb; }
+        .icon-amber  { background: #fffbeb; color: #d97706; }
+
+        .instruction-card h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .instruction-card p {
+            font-size: 0.925rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Arena Demo Board Layout */
+        .demo-panel {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+        .screen-bar   { height: 8px; background: linear-gradient(90deg, #4f46e5, #6366f1, #4f46e5); border-radius: 4px; margin: 0 auto 6px auto; max-width: 400px; }
+        .screen-label { text-align: center; font-size: 0.75rem; color: #94a3b8; font-weight: 700;
+                        letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2rem; }
+
+        .seat-demo    { display: flex; flex-direction: column; gap: 10px; align-items: center; margin-bottom: 2rem; overflow-x: auto; padding: 10px 0; }
+        .seat-row-demo{ display: flex; align-items: center; gap: 6px; }
+        .row-lbl      { font-size: 0.8rem; font-weight: 800; color: #64748b; width: 24px; text-align: left; }
+
+        .seat-btn {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #475569;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.15s ease;
+        }
+        .seat-btn:hover:not(.booked)   { background: #eff6ff; border-color: #2563eb; color: #2563eb; transform: scale(1.05); }
+        .seat-btn.selected             { background: #6366f1; border-color: #6366f1; color: #ffffff; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
+        .seat-btn.booked               { background: #e2e8f0; border-color: #cbd5e1; color: #94a3b8;
+                                         cursor: not-allowed; opacity: .7; text-decoration: line-through; }
+        .seat-btn.aisle                { margin-left: 14px; }
+
+        .legend       { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+        .legend-item  { display: flex; align-items: center; gap: 8px;
+                        font-size: 0.875rem; color: #475569; font-weight: 600; }
+        .dot          { width: 16px; height: 16px; border-radius: 5px; display: inline-block; }
+        .dot-avail    { background: #f8fafc; border: 1px solid #cbd5e1; }
+        .dot-sel      { background: #6366f1; }
+        .dot-booked   { background: #e2e8f0; border: 1px solid #cbd5e1; }
+
+        .summary-bar {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .summary-pill      { font-size: 0.95rem; color: #64748b; background: #f1f5f9; padding: 8px 16px; border-radius: 12px; }
+        .summary-pill span { font-weight: 800; color: #0f172a; margin-left: 4px; }
+
+        .btn-checkout {
+            background: #6366f1; color: #fff;
+            border: none; border-radius: 14px;
+            padding: 12px 28px; font-size: 0.9rem; font-weight: 700;
+            cursor: not-allowed; opacity: .4;
+            transition: all 0.2s ease;
+            text-decoration: none; display: inline-block;
+            box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.1);
+        }
+        .btn-checkout.active           { opacity: 1; cursor: pointer; }
+        .btn-checkout:hover.active     { background: #4f46e5; color: #fff; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3); }
+
+        /* Helpful Feature Blocks */
+        .tip-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 1.25rem;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            height: 100%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .tip-icon {
+            flex-shrink: 0;
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.15rem;
+        }
+        .tip-card h5 { font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
+        .tip-card p  { font-size: 0.85rem;  color: #64748b; line-height: 1.6; margin: 0; }
+
+        /* Safe Action Notice Ribbon */
+        .info-strip {
+            background: linear-gradient(90deg, #e0e7ff 0%, #e0e7ff 100%);
+            border: 1px solid #c7d2fe;
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            display: flex; gap: 14px; align-items: center;
+            margin-top: 1rem;
+            margin-bottom: 4rem;
+        }
+        .info-strip i { color: #4f46e5; font-size: 1.3rem; flex-shrink: 0; }
+        .info-strip p { font-size: 0.9rem; color: #312e81; line-height: 1.6; margin: 0; font-weight: 500; }
+
+        .section-title {
+            font-size: 0.8rem; font-weight: 700; color: #64748b;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            margin-bottom: 1.25rem; display: block;
+        }

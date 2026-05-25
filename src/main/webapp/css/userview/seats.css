@@ -1,0 +1,107 @@
+<style>
+        :root {
+            --p-accent: #6366f1;
+            --glass-core: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.4);
+        }
+
+        body {
+          background: url('/eventTicketBookingSystem/img/dashboard6.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.6);
+            z-index: -1;
+        }
+
+        .main-content { padding-top: 100px; padding-bottom: 60px; }
+
+        .glass-sidebar {
+            background: var(--glass-core);
+            backdrop-filter: blur(15px) saturate(150%);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 25px;
+            color: #1e293b;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-arena {
+            background: var(--glass-core);
+            backdrop-filter: blur(15px) saturate(150%);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        }
+
+        .seat {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            color: #475569;
+            font-weight: 700;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .seat:hover:not(.booked) {
+            background: rgba(255, 255, 255, 0.6);
+            transform: translateY(-3px);
+            border-color: var(--p-accent);
+        }
+
+        .seat.selected {
+            background: var(--p-accent);
+            color: white;
+            border-color: transparent;
+        }
+
+        .seat.booked {
+            background: rgba(0, 0, 0, 0.1);
+            color: rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: not-allowed;
+        }
+
+        .seat-pill {
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            color: var(--p-accent);
+            padding: 5px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 800;
+            display: inline-block;
+            margin: 3px;
+        }
+
+        .summary-card {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-checkout {
+            background: var(--p-accent);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            border-radius: 18px;
+            font-weight: 800;
+        }
