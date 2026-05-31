@@ -37,7 +37,7 @@ public class UserServlet extends HttpServlet {
                           HttpServletResponse response)
             throws ServletException, IOException {
 
-        // FIX 1: guard against a missing / null "action" parameter
+
         String action = request.getParameter("action");
         if (action == null || action.trim().isEmpty()) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing action parameter");
@@ -53,7 +53,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    // ------------------------------------------------------------------ CREATE
+    //  CREATE
     private void createUser(HttpServletRequest request,
                             HttpServletResponse response)
             throws ServletException, IOException {
@@ -75,12 +75,12 @@ public class UserServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/admin/users.jsp");
     }
 
-    // ------------------------------------------------------------------ UPDATE
+    // UPDATE
     private void updateUser(HttpServletRequest request,
                             HttpServletResponse response)
             throws ServletException, IOException {
 
-        // FIX 2: guard against missing "id" before parsing
+
         String idParam = request.getParameter("id");
         if (idParam == null || idParam.trim().isEmpty()) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing user id");
@@ -93,21 +93,21 @@ public class UserServlet extends HttpServlet {
         u.setEmail(request.getParameter("email"));
         u.setPhone(request.getParameter("phone"));
 
-        // FIX 3: guard against null role (hidden field now sent from profile.jsp)
+
         String role = request.getParameter("role");
         u.setRole(role != null ? role : "user");
 
-        // FIX 4: use new password only when supplied; otherwise keep the old one
+
         String newPassword = request.getParameter("password");
         if (newPassword != null && !newPassword.trim().isEmpty()) {
             u.setPassword(newPassword.trim());
         } else {
-            // oldPassword hidden field is sent by the form
+
             String oldPassword = request.getParameter("oldPassword");
             u.setPassword(oldPassword != null ? oldPassword : "");
         }
 
-        // FIX 5: image — keep existing image when no new file is uploaded
+
         String imagePath = uploadImage(request);
         if (imagePath == null || imagePath.isEmpty()) {
             String oldImage = request.getParameter("oldImage");
@@ -130,14 +130,14 @@ public class UserServlet extends HttpServlet {
 
         service.updateUser(getFile(), u);
 
-        // FIX 6: refresh the session so the profile page shows updated data immediately
+
         User sessionUser = (User) request.getSession().getAttribute("user");
         if (sessionUser != null && sessionUser.getId() == u.getId()) {
-            u.setPassword(sessionUser.getPassword()); // never expose password via session unnecessarily
+            u.setPassword(sessionUser.getPassword());
             request.getSession().setAttribute("user", u);
         }
 
-        // Redirect back to profile if the request came from there, otherwise admin panel
+
         String referer = request.getHeader("Referer");
         if (referer != null && referer.contains("profile.jsp")) {
             response.sendRedirect(request.getContextPath() + "/user/profile.jsp");
@@ -146,7 +146,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    // ------------------------------------------------------------------ DELETE
+    //  DELETE
     private void deleteUser(HttpServletRequest request,
                             HttpServletResponse response)
             throws IOException {
@@ -162,7 +162,7 @@ public class UserServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/admin/users.jsp");
     }
 
-    // ------------------------------------------------------------------ IMAGE UPLOAD
+    //  IMAGE UPLOAD
     private String uploadImage(HttpServletRequest request)
             throws IOException, ServletException {
 
@@ -172,7 +172,7 @@ public class UserServlet extends HttpServlet {
             return "";
         }
 
-        // FIX 8: guard against a missing submitted filename
+
         String submittedName = part.getSubmittedFileName();
         if (submittedName == null || submittedName.trim().isEmpty()) {
             return "";
