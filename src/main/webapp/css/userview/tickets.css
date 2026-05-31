@@ -1,0 +1,163 @@
+:root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --bg-soft: #f8fafc;
+        }
+
+       body {
+                 background: url('/eventTicketBookingSystem/img/dashboard6.jpg') no-repeat center center fixed;
+                   background-size: cover;
+                   font-family: 'Plus Jakarta Sans', sans-serif;
+                   min-height: 100vh;
+               }
+
+               /* overlay */
+               body::before {
+                   content: "";
+                   position: fixed;
+                   inset: 0;
+                   background: rgba(255, 255, 255, 0.6);
+                   z-index: -1;
+               }
+
+
+        .page-header {
+            padding: 60px 0 40px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(168, 85, 247, 0.05));
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* ── Modern Ticket Component ── */
+        .ticket-wrapper {
+            position: relative;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .ticket-wrapper:hover {
+            transform: scale(1.01);
+        }
+
+        .ticket-card {
+            display: flex;
+            background: white;
+            border-radius: 28px;
+            min-height: 200px;
+            box-shadow: 0 15px 35px -5px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Perforation Notches */
+        .ticket-card::before, .ticket-card::after {
+            content: "";
+            position: absolute;
+            width: 34px;
+            height: 34px;
+            background: var(--bg-soft);
+            border-radius: 50%;
+            left: 72%;
+            z-index: 5;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .ticket-card::before { top: -17px; box-shadow: inset 0 -5px 5px rgba(0,0,0,0.02); }
+        .ticket-card::after { bottom: -17px; box-shadow: inset 0 5px 5px rgba(0,0,0,0.02); }
+
+        /* Left Side: Info */
+        .ticket-info {
+            flex: 7.2;
+            padding: 1.8rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .t-category {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .t-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+
+        .t-meta {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 15px;
+        }
+
+        .meta-box span {
+            display: block;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .meta-box p {
+            margin: 0;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        /* Right Side: Stub */
+        .ticket-stub {
+            flex: 2.8;
+            background: #fafafa;
+            border-left: 2px dashed #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .qr-box {
+            background: white;
+            padding: 10px;
+            border-radius: 18px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            margin-bottom: 12px;
+        }
+
+        .qr-box i { font-size: 3.5rem; color: #1e293b; }
+
+        .t-id {
+            font-family: 'Monaco', monospace;
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 700;
+        }
+
+        .status-badge {
+            margin-top: 10px;
+            font-size: 0.7rem;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-weight: 800;
+            background: #dcfce7;
+            color: #15803d;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .ticket-card { flex-direction: column; }
+            .ticket-card::before, .ticket-card::after { display: none; }
+            .ticket-stub { border-left: none; border-top: 2px dashed #e2e8f0; }
+            .t-meta { grid-template-columns: 1fr 1fr; }
+        }

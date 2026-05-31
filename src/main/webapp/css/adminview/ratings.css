@@ -1,0 +1,125 @@
+
+       :root {
+            --sidebar-w: 260px;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --accent: #6c5ce7;
+            --star-gold: #fbbf24;
+            --text-main: #0f172a;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background-attachment: fixed;
+            color: var(--text-main);
+        }
+
+        .page-wrapper { display: flex; min-height: 100vh; }
+
+        .main-content {
+            margin-left: var(--sidebar-w);
+            padding: 40px;
+            width: 100%;
+        }
+
+        /* GLASS HEADER */
+        .glass-header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 20px 30px;
+            border-radius: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        /* CRYSTAL CARD & TABLE */
+        .crystal-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 28px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+        }
+
+        .crystal-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+        }
+
+        .crystal-table th {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #64748b;
+            padding: 12px 20px;
+        }
+
+        .crystal-table td {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 16px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            vertical-align: middle;
+        }
+
+        .crystal-table td:first-child { border-left: 1px solid var(--glass-border); border-radius: 16px 0 0 16px; }
+        .crystal-table td:last-child { border-right: 1px solid var(--glass-border); border-radius: 0 16px 16px 0; }
+
+        /* STAR RATING STYLE */
+        .star-glow {
+            color: var(--star-gold);
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+            font-size: 1.1rem;
+        }
+
+        .comment-text {
+            max-width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .btn-add {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 14px;
+            font-weight: 700;
+            box-shadow: 0 8px 20px -5px rgba(108, 92, 231, 0.4);
+            transition: 0.3s;
+        }
+
+        /* MODAL STYLE */
+        .glass-modal {
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(25px);
+        }
+
+        .modal-header-rating {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            padding: 25px;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .input-group-crystal {
+            background: white;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        .input-group-crystal .form-control { border: none; padding: 12px; }

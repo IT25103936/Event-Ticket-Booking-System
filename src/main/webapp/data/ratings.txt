@@ -1,0 +1,9 @@
+6,1,8,2,superb,2026-05-24
+7,2,5,5,excellent experience,2026-05-24
+8,3,3,4,well organized event,2026-05-23
+9,4,10,3,average but good location,2026-05-22
+10,5,1,5,amazing atmosphere,2026-05-21
+11,2,7,4,very informative session,2026-05-20
+12,1,9,2,not satisfied with arrangements,2026-05-1913
+13,6,8,4,super ,2026-05-25
+14,6,7,4,EXCELLENT ,2026-05-25
