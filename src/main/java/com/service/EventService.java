@@ -18,4 +18,3 @@ public interface EventService {
 
     void writeAll(File file, List<Event> events);
 }
-

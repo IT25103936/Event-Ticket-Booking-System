@@ -13,7 +13,7 @@ public class Event {
     private int availableSeats;
     private String status;
 
-    // FULL CONSTRUCTOR
+
     public Event(int id, String name, String date, String time,
                  String location, double price, String description,
                  String imagePath, int availableSeats, String status) {
@@ -54,11 +54,10 @@ public class Event {
     public void setAvailableSeats(int availableSeats) { this.availableSeats = availableSeats; }
     public void setStatus(String status) { this.status = status; }
 
-    // FILE FORMAT (UPDATED WITH TIME)
+    // FILE FORMAT
     public String toFileString() {
         return id + "," + name + "," + date + "," + time + "," +
                 location + "," + price + "," + description + "," +
                 imagePath + "," + availableSeats + "," + status;
     }
 }
-

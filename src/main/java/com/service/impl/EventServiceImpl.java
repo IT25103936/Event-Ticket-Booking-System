@@ -42,7 +42,7 @@ public class EventServiceImpl implements EventService {
         writeAll(file, list);
     }
 
-
+    // FILE READ
     @Override
     public List<Event> readAll(File file) {
 
@@ -86,7 +86,7 @@ public class EventServiceImpl implements EventService {
         return list;
     }
 
-   //write all
+    // FILE WRITE ALL
     @Override
     public void writeAll(File file, List<Event> events) {
 
@@ -102,7 +102,7 @@ public class EventServiceImpl implements EventService {
         }
     }
 
-
+    // APPEND
     private void writeAppend(File file, Event e) {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
@@ -113,7 +113,7 @@ public class EventServiceImpl implements EventService {
         }
     }
 
-
+    // SAFE PARSERS
     private int safeInt(String v) {
         try { return (v == null || v.isEmpty()) ? 0 : Integer.parseInt(v); }
         catch (Exception e) { return 0; }
@@ -124,4 +124,3 @@ public class EventServiceImpl implements EventService {
         catch (Exception e) { return 0.0; }
     }
 }
-

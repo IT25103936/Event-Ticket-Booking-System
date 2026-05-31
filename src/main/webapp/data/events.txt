@@ -1,0 +1,8 @@
+8,Business Networking Meetup,2026-08-08,17:30,Hilton Colombo,3000.0,Professional indoor networking session for entrepreneurs,3491168e-2ec6-44c6-8fe8-e565c87f210f.avif,40,Active
+9,Photography Workshop,2026-09-14,09:30,Galle Conference Hall,1800.0,Indoor workshop covering photography techniques and editing,da82e34c-f376-45f0-88ed-7541664cd180.jpg,40,Active
+10,Indoor Music Concert,2026-10-20,19:00,Nelum Pokuna Theatre,6000.0,Live indoor concert with popular bands and singers,d238cce4-a9fa-485e-8ccd-e1cd47cfefd9.jpeg,40,Active
+12,Digital Marketing Workshop,2026-11-18,09:00,Colombo Innovation Tower,2000.0,Indoor workshop on SEO,2a4c231e-11a5-47de-8e58-554de2f62d21.jpg,40,Active
+13,Medical Conference 2026,2026-12-02,08:30,Cinnamon Grand Colombo,5500.0,Indoor medical research and healthcare conference,7945bc0f-f044-49a0-a571-6ed214522b4e.jpg,40,Active
+14,Law & Justice Seminar,2026-12-10,10:00,University of Colombo Auditorium,1800.0,Indoor seminar on legal studies and reforms,ad899ff2-112a-4c43-856f-65278ea6306a.jpg,40,Active
+15,Food Safety Training,2026-12-15,13:00,Negombo Training Center,1500.0,Professional indoor food safety certification program,f8a374d9-dc23-483e-a555-fee6e1b13855.jpg,40,Active
+16,Photography Masterclass,2027-01-10,09:00,Kandy Cultural Hall,2200.0,Advanced indoor photography training session,3add0a81-1bd7-42cd-8107-dd8d1d7285ba.webp,40,Active

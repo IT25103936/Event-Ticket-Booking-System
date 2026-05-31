@@ -17,7 +17,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
 @WebServlet("/EventServlet")
-@MultipartConfig(maxFileSize = 5 * 1024 * 1024)
+@MultipartConfig(maxFileSize = 5 * 1024 * 1024) // 5 MB limit
 public class EventServlet extends HttpServlet {
 
     private final EventService service = new EventServiceImpl();
@@ -108,4 +108,3 @@ public class EventServlet extends HttpServlet {
         catch (Exception e) { return 0.0; }
     }
 }
-
