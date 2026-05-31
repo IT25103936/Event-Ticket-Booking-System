@@ -51,7 +51,7 @@
 - Payment tracking system  
 - **Automated email notifications after booking confirmation**  
 - **PDF ticket generation with unique QR/Serial ID**  
-- Ticket generation (digital pass)  
+- Ticket generation   
 - Booking history tracking  
 - Review and rating system  
 
