@@ -4,11 +4,9 @@ import com.model.Rating;
 import com.model.User;
 import com.service.RatingService;
 import com.service.impl.RatingServiceImpl;
+
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,9 +1,8 @@
 package com.service;
 
-import com.model.Payment;
-
 import java.io.File;
 import java.util.List;
+import com.model.Payment;
 
 public interface PaymentService {
 

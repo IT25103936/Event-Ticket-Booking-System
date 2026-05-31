@@ -4,8 +4,7 @@ import com.model.Booking;
 import com.service.BookingService;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BookingServiceImpl implements BookingService {
 

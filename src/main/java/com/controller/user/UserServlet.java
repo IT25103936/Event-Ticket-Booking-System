@@ -66,11 +66,9 @@ public class UserServlet extends HttpServlet {
 
         service.addUser(getFile(), u);
 
-        if ("ADMIN".equals(u.getRole())) {
-            response.sendRedirect(request.getContextPath() + "/admin/users.jsp");
-        } else {
-            response.sendRedirect(request.getContextPath() + "/user/login.jsp");
-        }
+        response.sendRedirect(request.getContextPath() + "/admin/users.jsp");
+
+
     }
 
     // UPDATE
@@ -78,7 +76,6 @@ public class UserServlet extends HttpServlet {
                             HttpServletResponse response)
             throws ServletException, IOException {
 
-        User sessionUser = (User) request.getSession().getAttribute("user");
         System.out.println( request.getParameter("id"));
 
         User u = new User();
@@ -87,7 +84,14 @@ public class UserServlet extends HttpServlet {
         u.setEmail(request.getParameter("email"));
         u.setPhone(request.getParameter("phone"));
         u.setRole(request.getParameter("role"));
-        u.setPassword(request.getParameter("password"));
+
+
+        String newPassword = request.getParameter("password");
+        if (newPassword != null && !newPassword.trim().isEmpty()) {
+            u.setPassword(newPassword.trim());
+        } else {
+            u.setPassword(request.getParameter("oldPassword"));
+        }
 
 
         String imagePath = uploadImage(request);
@@ -95,10 +99,9 @@ public class UserServlet extends HttpServlet {
         if (imagePath == null || imagePath.isEmpty()) {
 
             String oldImage = request.getParameter("oldImage");
-            String sessionImage = sessionUser.getImage();
-            u.setImage((sessionImage != null && !sessionImage.isEmpty())
-                    ? sessionImage
-                    : (oldImage != null ? oldImage : "default.png"));
+            u.setImage((oldImage != null && !oldImage.trim().isEmpty())
+                    ? oldImage
+                    : "default.png");
         } else {
             u.setImage(imagePath);
         }
@@ -115,7 +118,7 @@ public class UserServlet extends HttpServlet {
 
         service.updateUser(getFile(), u);
 
-            response.sendRedirect(request.getContextPath() + "/admin/users.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin/users.jsp");
 
     }
 

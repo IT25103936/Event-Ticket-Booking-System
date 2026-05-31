@@ -52,8 +52,8 @@
 
                 <tbody>
                 <%
-                    // File format: id,name,email,phone,role,password,image
-                    //              d[0] d[1] d[2]  d[3]  d[4] d[5]     d[6]
+                    // File format: id,name,email,phone,password,role,image
+                    //              d[0] d[1] d[2]  d[3]  d[4]     d[5] d[6]
                     String path = application.getRealPath("/") + "data/users.txt";
                     File file = new File(path);
 
@@ -89,9 +89,6 @@
                     </td>
 
                     <!-- ROLE  (d[4]) -->
-                    <%-- FIX: was showing d[4] as "Clearance" and d[5] as "Role".
-                         File format is id,name,email,phone,ROLE,password,image
-                         so d[4]=role and d[5]=password — they were swapped. --%>
                     <td>
                         <span class="badge"
                               style="background:#e0e7ff;color:#4338ca;font-size:0.65rem;">
@@ -108,20 +105,16 @@
                     <td class="text-end">
                         <div class="d-flex gap-1 justify-content-end">
 
-                            <%--
-                              FIX: openEdit signature is (id, name, email, phone, password, role, image).
-                              Password is d[5], role is d[4].
-                              Previously the call passed d[4] then d[5] — role and password were swapped,
-                              so the password field showed the role text and vice versa in the edit modal.
-                            --%>
+                            <%-- openEdit(id, name, email, phone, password, role, image)
+                                 d[4]=password, d[5]=role in actual file format --%>
                             <button class="btn btn-white btn-sm border shadow-sm"
                                     onclick="openEdit(
                                         '<%= d[0] %>',
                                         '<%= d[1] %>',
                                         '<%= d[2] %>',
                                         '<%= d[3] %>',
-                                        '<%= d[5] %>',
                                         '<%= d[4] %>',
+                                        '<%= d[5] %>',
                                         '<%= img %>'
                                     )">
                                 <i class="bi bi-pencil text-primary"></i>
@@ -176,6 +169,7 @@
                     <input type="hidden" name="action" id="action" value="create">
                     <input type="hidden" name="id" id="id">
                     <input type="hidden" name="oldImage" id="oldImage">
+                    <input type="hidden" name="oldPassword" id="oldPassword">
 
                     <!-- NAME -->
                     <label class="compact-label">
@@ -220,7 +214,8 @@
                             </label>
                             <div class="input-group-crystal-sm">
                                 <select name="role" id="role" class="form-select">
-                                    <option value="USER" selected>USER</option>
+                                    <option value="USER">USER</option>
+                                    <option value="ADMIN">ADMIN</option>
                                 </select>
                             </div>
                         </div>
@@ -232,7 +227,7 @@
                             <div class="input-group-crystal-sm">
                                 <input type="password" name="password" id="password"
                                        class="form-control"
-                                       placeholder="••••••" required>
+                                       placeholder="••••••">
                             </div>
                         </div>
                     </div>
@@ -308,7 +303,8 @@
       document.getElementById("name").value = name;
       document.getElementById("email").value = email;
       document.getElementById("phone").value = phone;
-      document.getElementById("password").value = password;
+      document.getElementById("password").value = "";        // blank — admin re-enters only if changing
+      document.getElementById("oldPassword").value = password; // preserved for fallback
       document.getElementById("role").value = role;
       document.getElementById("oldImage").value = image;
       document.getElementById("previewImg").src =

@@ -4,14 +4,18 @@ import com.model.Booking;
 import com.model.Payment;
 import com.model.Ticket;
 import com.model.User;
+
 import com.service.BookingService;
 import com.service.PaymentService;
 import com.service.TicketService;
+
 import com.service.impl.BookingServiceImpl;
 import com.service.impl.PaymentServiceImpl;
 import com.service.impl.TicketServiceImpl;
+
 import com.utils.EmailUtil;
 import com.utils.TicketPdfGenerator;
+
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -107,7 +111,7 @@ public class BookingProcessServlet extends HttpServlet {
             double singleTicketPrice = totalPrice / quantity;
             Ticket ticket = new Ticket(
                     0, bookingId, userId, eventId,
-                    seatList.toString(), singleTicketPrice, "ACTIVE"
+                    seatList.toString(), totalPrice, "ACTIVE"
             );
             ticketService.create(getFile(TICKET_FILE), ticket);
 

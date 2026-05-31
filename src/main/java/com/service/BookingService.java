@@ -1,9 +1,8 @@
 package com.service;
 
-import com.model.Booking;
-
 import java.io.File;
 import java.util.List;
+import com.model.Booking;
 
 public interface BookingService {
 

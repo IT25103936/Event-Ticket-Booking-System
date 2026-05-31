@@ -51,11 +51,11 @@
 <div class="form-subtitle">Start your experience</div>
 
 <!-- ✅ FIXED FORM -->
-<form action="<%= request.getContextPath() %>/UserServlet"
+<form action="<%= request.getContextPath() %>/LoginServlet"
       method="post"
       enctype="multipart/form-data">
 
-<input type="hidden" name="action" value="create">
+<input type="hidden" name="action" value="register">
 
 <!-- NAME -->
 <div class="input-pill">
@@ -75,18 +75,16 @@
 <input type="text" name="phone" placeholder="Phone Number" required>
 </div>
 
-<!-- ROLE (FIXED) -->
-<div class="input-pill">
-<i class="bi bi-person-badge"></i>
-<select name="role" class="form-select" required>
-    <option value="USER" selected>USER</option>
-</select>
-</div>
-
 <!-- PASSWORD -->
 <div class="input-pill">
 <i class="bi bi-lock"></i>
 <input type="password" name="password" placeholder="Password" required>
+</div>
+
+<!-- PROFILE IMAGE (optional) -->
+<div class="input-pill">
+<i class="bi bi-image"></i>
+<input type="file" name="image" accept="image/*">
 </div>
 
 <button class="btn-modern" type="submit">
