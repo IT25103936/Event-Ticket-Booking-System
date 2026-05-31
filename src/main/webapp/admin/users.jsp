@@ -16,7 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/eventTicketBookingSystem/css/adminview/users.css">
+    <link rel="stylesheet" href="/EventTicketBookingSystem/css/adminview/users.css">
 </head>
 
 <body>
@@ -105,16 +105,16 @@
                     <td class="text-end">
                         <div class="d-flex gap-1 justify-content-end">
 
-                            <%-- openEdit(id, name, email, phone, password, role, image)
-                                 d[4]=password, d[5]=role in actual file format --%>
+                            <%-- openEdit(id, name, email, phone,role,password, image)
+                                 d[5]=password, d[4]=role in actual file format --%>
                             <button class="btn btn-white btn-sm border shadow-sm"
                                     onclick="openEdit(
                                         '<%= d[0] %>',
                                         '<%= d[1] %>',
                                         '<%= d[2] %>',
                                         '<%= d[3] %>',
-                                        '<%= d[4] %>',
                                         '<%= d[5] %>',
+                                        '<%= d[4] %>',
                                         '<%= img %>'
                                     )">
                                 <i class="bi bi-pencil text-primary"></i>
@@ -215,8 +215,7 @@
                             <div class="input-group-crystal-sm">
                                 <select name="role" id="role" class="form-select">
                                     <option value="USER">USER</option>
-                                    <option value="ADMIN">ADMIN</option>
-                                </select>
+                               </select>
                             </div>
                         </div>
 
@@ -225,7 +224,7 @@
                                 <i class="bi bi-key me-1"></i> PASSWORD
                             </label>
                             <div class="input-group-crystal-sm">
-                                <input type="password" name="password" id="password"
+                                <input  name="password" id="password"
                                        class="form-control"
                                        placeholder="••••••">
                             </div>
@@ -305,7 +304,7 @@
       document.getElementById("phone").value = phone;
       document.getElementById("password").value = "";        // blank — admin re-enters only if changing
       document.getElementById("oldPassword").value = password; // preserved for fallback
-      document.getElementById("role").value = role;
+      document.getElementById("role").value = "USER";
       document.getElementById("oldImage").value = image;
       document.getElementById("previewImg").src =
           image ? "<%= request.getContextPath() %>/" + image

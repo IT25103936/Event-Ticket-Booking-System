@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;800&display=swap" rel="stylesheet">
 
  <!-- Load CSS file -->
-     <link rel="stylesheet" href="/eventTicketBookingSystem/css/userview/signup.css">
+     <link rel="stylesheet" href="/EventTicketBookingSystem/css/userview/signup.css">
 
 
 </head>

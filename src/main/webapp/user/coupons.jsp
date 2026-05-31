@@ -17,7 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
    <!-- Load CSS file -->
-   <link rel="stylesheet" href="/eventTicketBookingSystem/css/userview/coupons.css">
+   <link rel="stylesheet" href="/EventTicketBookingSystem/css/userview/coupons.css">
 
 </head>
 <body>

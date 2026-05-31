@@ -12,7 +12,7 @@
 
 
  <!-- Load CSS file -->
-   <link rel="stylesheet" href="/eventTicketBookingSystem/css/userview/instructions.css">
+   <link rel="stylesheet" href="/EventTicketBookingSystem/css/userview/instructions.css">
 </head>
 
 <body>

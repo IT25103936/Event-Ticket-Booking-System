@@ -19,8 +19,8 @@ import java.util.UUID;
 @WebServlet("/UserServlet")
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024,
-        maxFileSize      = 1024 * 1024 * 5,
-        maxRequestSize   = 1024 * 1024 * 10
+        maxFileSize       = 1024 * 1024 * 5,
+        maxRequestSize    = 1024 * 1024 * 10
 )
 public class UserServlet extends HttpServlet {
 
@@ -37,17 +37,23 @@ public class UserServlet extends HttpServlet {
                           HttpServletResponse response)
             throws ServletException, IOException {
 
+        // FIX 1: guard against a missing / null "action" parameter
         String action = request.getParameter("action");
-        System.out.println(action);
+        if (action == null || action.trim().isEmpty()) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing action parameter");
+            return;
+        }
 
-        switch (action) {
+        switch (action.trim()) {
             case "create": createUser(request, response); break;
             case "update": updateUser(request, response); break;
             case "delete": deleteUser(request, response); break;
+            default:
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Unknown action: " + action);
         }
     }
 
-    // CREATE
+    // ------------------------------------------------------------------ CREATE
     private void createUser(HttpServletRequest request,
                             HttpServletResponse response)
             throws ServletException, IOException {
@@ -67,37 +73,43 @@ public class UserServlet extends HttpServlet {
         service.addUser(getFile(), u);
 
         response.sendRedirect(request.getContextPath() + "/admin/users.jsp");
-
-
     }
 
-    // UPDATE
+    // ------------------------------------------------------------------ UPDATE
     private void updateUser(HttpServletRequest request,
                             HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println( request.getParameter("id"));
+        // FIX 2: guard against missing "id" before parsing
+        String idParam = request.getParameter("id");
+        if (idParam == null || idParam.trim().isEmpty()) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing user id");
+            return;
+        }
 
         User u = new User();
-        u.setId(Integer.parseInt(request.getParameter("id")));
+        u.setId(Integer.parseInt(idParam.trim()));
         u.setName(request.getParameter("name"));
         u.setEmail(request.getParameter("email"));
         u.setPhone(request.getParameter("phone"));
-        u.setRole(request.getParameter("role"));
 
+        // FIX 3: guard against null role (hidden field now sent from profile.jsp)
+        String role = request.getParameter("role");
+        u.setRole(role != null ? role : "user");
 
+        // FIX 4: use new password only when supplied; otherwise keep the old one
         String newPassword = request.getParameter("password");
         if (newPassword != null && !newPassword.trim().isEmpty()) {
             u.setPassword(newPassword.trim());
         } else {
-            u.setPassword(request.getParameter("oldPassword"));
+            // oldPassword hidden field is sent by the form
+            String oldPassword = request.getParameter("oldPassword");
+            u.setPassword(oldPassword != null ? oldPassword : "");
         }
 
-
+        // FIX 5: image — keep existing image when no new file is uploaded
         String imagePath = uploadImage(request);
-
         if (imagePath == null || imagePath.isEmpty()) {
-
             String oldImage = request.getParameter("oldImage");
             u.setImage((oldImage != null && !oldImage.trim().isEmpty())
                     ? oldImage
@@ -107,31 +119,50 @@ public class UserServlet extends HttpServlet {
         }
 
         System.out.println(
-                "User => " +
-                        "id: " + u.getId() +
-                        ", name: " + u.getName() +
-                        ", email: " + u.getEmail() +
-                        ", phone: " + u.getPhone() +
-                        ", role: " + u.getRole() +
-                        ", image: " + u.getImage()
+                "User{id=" + u.getId() +
+                        ", name='" + u.getName() + '\'' +
+                        ", email='" + u.getEmail() + '\'' +
+                        ", phone='" + u.getPhone() + '\'' +
+                        ", role='" + u.getRole() + '\'' + ", password='" + u.getPassword() + '\'' +
+                        ", image='" + u.getImage() + '\'' +
+                        '}'
         );
 
         service.updateUser(getFile(), u);
 
-        response.sendRedirect(request.getContextPath() + "/admin/users.jsp");
+        // FIX 6: refresh the session so the profile page shows updated data immediately
+        User sessionUser = (User) request.getSession().getAttribute("user");
+        if (sessionUser != null && sessionUser.getId() == u.getId()) {
+            u.setPassword(sessionUser.getPassword()); // never expose password via session unnecessarily
+            request.getSession().setAttribute("user", u);
+        }
 
+        // Redirect back to profile if the request came from there, otherwise admin panel
+        String referer = request.getHeader("Referer");
+        if (referer != null && referer.contains("profile.jsp")) {
+            response.sendRedirect(request.getContextPath() + "/user/profile.jsp");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/admin/users.jsp");
+        }
     }
 
-    // DELETE
+    // ------------------------------------------------------------------ DELETE
     private void deleteUser(HttpServletRequest request,
                             HttpServletResponse response)
             throws IOException {
 
-        service.deleteUser(getFile(), request.getParameter("id"));
+        // FIX 7: guard against missing "id"
+        String idParam = request.getParameter("id");
+        if (idParam == null || idParam.trim().isEmpty()) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing user id");
+            return;
+        }
+
+        service.deleteUser(getFile(), idParam.trim());
         response.sendRedirect(request.getContextPath() + "/admin/users.jsp");
     }
 
-    // IMAGE UPLOAD
+    // ------------------------------------------------------------------ IMAGE UPLOAD
     private String uploadImage(HttpServletRequest request)
             throws IOException, ServletException {
 
@@ -141,12 +172,15 @@ public class UserServlet extends HttpServlet {
             return "";
         }
 
-        String originalName = Paths.get(part.getSubmittedFileName())
-                .getFileName().toString();
+        // FIX 8: guard against a missing submitted filename
+        String submittedName = part.getSubmittedFileName();
+        if (submittedName == null || submittedName.trim().isEmpty()) {
+            return "";
+        }
 
-        String fileName = UUID.randomUUID() + "_" + originalName;
-
-        String uploadPath = getServletContext().getRealPath("/") + "uploads";
+        String originalName = Paths.get(submittedName).getFileName().toString();
+        String fileName      = UUID.randomUUID() + "_" + originalName;
+        String uploadPath    = getServletContext().getRealPath("/") + "uploads";
 
         File folder = new File(uploadPath);
         if (!folder.exists()) {

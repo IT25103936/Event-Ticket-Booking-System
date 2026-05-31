@@ -76,7 +76,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="/eventTicketBookingSystem/css/adminview/dashboard.css">
+    <link rel="stylesheet" href="/EventTicketBookingSystem/css/adminview/dashboard.css">
 </head>
 <body>
 

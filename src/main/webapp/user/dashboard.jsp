@@ -16,7 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
   <!-- Load CSS file -->
-<link rel="stylesheet" href="/eventTicketBookingSystem/css/userview/userDashboard.css">
+<link rel="stylesheet" href="/EventTicketBookingSystem/css/userview/userDashboard.css">
 
 </head>
 

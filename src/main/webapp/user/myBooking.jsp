@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/eventTicketBookingSystem/css/userview/myBookings.css">
+    <link rel="stylesheet" href="/EventTicketBookingSystem/css/userview/myBookings.css">
 </head>
 
 <body>

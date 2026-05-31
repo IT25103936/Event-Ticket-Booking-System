@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
     <!-- Load CSS file -->
-       <link rel="stylesheet" href="/eventTicketBookingSystem/css/adminview/admins.css">
+       <link rel="stylesheet" href="/EventTicketBookingSystem/css/adminview/admins.css">
 </head>
 
 <body>
