@@ -75,7 +75,8 @@ public class UserServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/admin/users.jsp");
     }
 
-    // UPDATE
+
+    //  UPDATE
     private void updateUser(HttpServletRequest request,
                             HttpServletResponse response)
             throws ServletException, IOException {
@@ -118,15 +119,7 @@ public class UserServlet extends HttpServlet {
             u.setImage(imagePath);
         }
 
-        System.out.println(
-                "User{id=" + u.getId() +
-                        ", name='" + u.getName() + '\'' +
-                        ", email='" + u.getEmail() + '\'' +
-                        ", phone='" + u.getPhone() + '\'' +
-                        ", role='" + u.getRole() + '\'' + ", password='" + u.getPassword() + '\'' +
-                        ", image='" + u.getImage() + '\'' +
-                        '}'
-        );
+;
 
         service.updateUser(getFile(), u);
 
@@ -151,7 +144,7 @@ public class UserServlet extends HttpServlet {
                             HttpServletResponse response)
             throws IOException {
 
-        // FIX 7: guard against missing "id"
+
         String idParam = request.getParameter("id");
         if (idParam == null || idParam.trim().isEmpty()) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing user id");
