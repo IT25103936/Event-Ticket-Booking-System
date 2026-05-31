@@ -1,4 +1,12 @@
-# 🎟️ Event Ticket Booking System
+
+
+
+
+<p align="center">
+  <img src="screenshots/icon.jpeg" width="140"/>
+</p>
+
+<h1 align="center"> Event Ticket Booking System</h1>
 
 ## Sri Lanka Institute of Information Technology  
 **Module:** Object Oriented Programming | SE1020  
@@ -6,7 +14,7 @@
 
 ---
 
-## 📌 Project Overview
+##  Project Overview
 
 **Event Pass** is a web-based event ticket booking and management system designed to simplify event organization and ticket purchasing.
 
@@ -21,7 +29,7 @@
 
 ---
 
-## 🧩 Main Modules
+##  Main Modules
 
 - Admin Management  
 - Booking Management  
@@ -34,7 +42,7 @@
 
 ---
 
-## ⚙️ System Features
+##  System Features
 
 - User registration & login system  
 - Event creation and scheduling  
@@ -49,7 +57,7 @@
 
 ---
 
-## 📧 Email & PDF Ticket System
+##  Email & PDF Ticket System
 
 - After a successful booking, the system automatically:
   - Generates a **unique digital ticket**
@@ -63,7 +71,7 @@
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 - **Frontend:** HTML, CSS, JavaScript  
 - **Backend:** Java Servlet  
@@ -74,7 +82,7 @@
 
 ---
 
-## 🧱 System Architecture
+##  System Architecture
 
 ### Frontend
 HTML, CSS, and JavaScript are used to build a responsive and interactive user interface.
@@ -87,7 +95,7 @@ All system data (users, bookings, events, payments, coupons) are stored using st
 
 ---
 
-## 🧪 Functional Summary
+##  Functional Summary
 
 ### Customer
 - Register & login
@@ -111,7 +119,7 @@ All system data (users, bookings, events, payments, coupons) are stored using st
 
 ---
 
-## 👨‍💻 Individual Contributions
+##  Individual Contributions
 
 Each member implemented a core module following OOP principles:
 
@@ -125,7 +133,7 @@ Each member implemented a core module following OOP principles:
 
 ---
 
-## 🎯 OOP Concepts Applied
+##  OOP Concepts Applied
 
 - **Encapsulation** – Data hiding using private fields  
 - **Inheritance** – Shared structure across system models  
@@ -134,7 +142,7 @@ Each member implemented a core module following OOP principles:
 
 ---
 
-## 🚀 Conclusion
+##  Conclusion
 
 This system demonstrates a complete full-stack event management platform using Java Servlet technology. It reduces manual booking operations, improves efficiency, and provides a scalable foundation for future enhancements such as:
 
@@ -145,7 +153,7 @@ This system demonstrates a complete full-stack event management platform using J
 
 ---
 
-## 📎 License
+##  License
 
 This project is developed for academic purposes at SLIIT.
 
@@ -157,8 +165,14 @@ This project is developed for academic purposes at SLIIT.
 ### 🏠 Homepage
 ![Homepage](screenshots/homepage.png)
 
+### 👤 User Dashboard
+![User Dashboard](screenshots/user_dashboard.png)
+
 ### 🎫 Events Page
 ![Events](screenshots/events.png)
+
+### 🎫 Coupon Page
+![Coupons](screenshots/coupon_page.png)
 
 ### 🎟️ Ticket Booking
 ![Booking](screenshots/booking.png)
@@ -166,11 +180,13 @@ This project is developed for academic purposes at SLIIT.
 ### 💳 Payment Page
 ![Payment](screenshots/payment.png)
 
-### 📧 Email Confirmation (PDF Ticket)
-![Email PDF](screenshots/email_pdf.png)
-
 ### 🧾 Admin Dashboard
 ![Admin](screenshots/admin_dashboard.png)
 
+### 📧 Email Confirmation (PDF Ticket)
+![Email PDF](screenshots/email_pdf.png)
+
 ### 🎫 Ticket Generation
 ![Ticket](screenshots/ticket.png)
+
+![Booking PDF](screenshots/pdf.png)
